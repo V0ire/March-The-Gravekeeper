@@ -1,13 +1,14 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] private DialogueContainer dialogueContainer = new DialogueContainer();
+    public DialogueContainer dialogueContainer = new DialogueContainer();
 
     public static DialogueSystem instance; 
 
-    private void awake() {
+    private void Awake() {
         if (instance = null) instance = this;
         else DestroyImmediate(gameObject);
     }
