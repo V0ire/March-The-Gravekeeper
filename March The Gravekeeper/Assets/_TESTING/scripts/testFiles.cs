@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Enumeration;
 using UnityEngine;
 
 public class testFiles : MonoBehaviour
 {
-    private string fileName = "testFile";
+    [SerializeField] private TextAsset fileName;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
