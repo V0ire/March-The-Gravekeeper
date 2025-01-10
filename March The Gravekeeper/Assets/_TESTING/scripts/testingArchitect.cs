@@ -19,14 +19,21 @@ namespace TESTING {
         {
             ds = DialogueSystem.instance;
             architect = new textArchitect(ds.dialogueContainer.dialogueText);
-            architect.buildMethod = textArchitect.BuildMethod.typewriter;
         }
 
         // Update is called once per frame
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space)) {
-                architect.Build(lines[Random.Range(0, lines.Length)]);
+                if (architect.isBuilding) {
+                    if (!architect.hurryUp)
+                        architect.hurryUp = true;
+                    else architect.forceComplete();
+                }
+                architect.Build(lines[Random.Range(0,lines.Length)]);
+            }
+            else if (Input.GetKeyDown(KeyCode.A)) {
+                architect.Append(lines[Random.Range(0,lines.Length)]);
             }
         }
     }

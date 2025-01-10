@@ -25,7 +25,7 @@ public class textArchitect
     public Color textColor { get { return tmpro.color; } set {tmpro.color = value; } }
 
     public float speed  { get { return baseSpeed * speedMultiplier; } set { speedMultiplier = value; } }
-    private const float baseSpeed = 2;
+    private const float baseSpeed = 1;
     private float speedMultiplier = 1;
 
     public int charPerCycle { get { return speed <= 2f ? charMultiplier : speed <= 2.5f ? charMultiplier * 2 : charMultiplier * 3; } }
@@ -89,6 +89,19 @@ public class textArchitect
 
     private void onComplete() {
         buildProcess = null;
+        hurryUp = false;
+    }
+
+    public void forceComplete() {
+        switch (buildMethod) {
+            case BuildMethod.typewriter : 
+                tmpro.maxVisibleCharacters = tmpro.textInfo.characterCount;
+                break;
+            case BuildMethod.fade : break;
+        }
+
+        stop();
+        onComplete();
     }
 
     private void Prepare() {
